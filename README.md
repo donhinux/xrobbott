@@ -2,10 +2,13 @@
 ![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white "TypeScript")
 ![Jest](https://img.shields.io/badge/-Jest-911511?style=flat-square&logo=jest&logoColor=white "Jest")
 
+## Summary
+- [Disclaimer](#Disclaimer)
+- [Abstract](#Abstract)
+
 ## Disclaimer
-    This repo is the consolidation of my tests with TypeScript and Jest 
-    following the TDD approach so it may contain crazy stuff in the src, feel 
-    free to suggest improvements
+    This repo is the consolidation of my tests with **TypeScript** and **Jest** following the **TDD** approach, 
+    so it may contain crazy stuff in the src, feel free to suggest improvements!
 
 ## Abstract
 Find streamers on Twitch was always messy because unfortunately discoverability on the platform is not that 
