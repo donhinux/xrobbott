@@ -4,6 +4,7 @@ export class TwitchAuthService{
 
     private static instance:TwitchAuthService|undefined;
     static readonly AUTH_ENDPOINT: string = "https://id.twitch.tv/oauth2/token";
+    static readonly AUTH_ENDPOINT_VALIDATE: string = "https://id.twitch.tv/oauth2/validate";
     static readonly GRANT_TYPE:string = 'client_credentials';
 
     private accessToken!: string;
@@ -14,7 +15,9 @@ export class TwitchAuthService{
             TwitchAuthService.instance = new TwitchAuthService();
         return TwitchAuthService.instance;
     }
-    get token():string{ return this.accessToken; }
+    get token():string{
+        return this.accessToken;
+    }
     set token(token){this.accessToken = token;}
 
     public async refresh(){
@@ -24,10 +27,25 @@ export class TwitchAuthService{
             "grant_type": TwitchAuthService.GRANT_TYPE,
         };
         const {data} = await axios.post(TwitchAuthService.AUTH_ENDPOINT, null, {params});
-        console.log(data);
         this.token = `Bearer ${data.access_token}`;
     }
 
     static dispose(){ TwitchAuthService.instance = undefined; }
 
+    async isValid() {
+        if (!this.token) return false;
+        const headers = {
+            "Authorization": this.token,
+        };
+        const {status} = await axios.get(TwitchAuthService.AUTH_ENDPOINT_VALIDATE,{headers});
+        return status===200;
+    }
+
+    async getValidToken(){
+        if(!await this.isValid())
+        {
+            await this.refresh();
+        }
+        return this.token;
+    }
 }
