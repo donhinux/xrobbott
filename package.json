@@ -1,0 +1,35 @@
+{
+  "name": "xrobbott",
+  "version": "1.0.0",
+  "description": "A twitch community aggregator",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "jest --watchAll --verbose --coverage",
+    "start": "node ./dist/app.js",
+    "dist": "tsc -p .",
+    "dev": "nodemon ./src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donhinux/xrobbott.git"
+  },
+  "keywords": [
+    "twitch",
+    "twitchapi",
+    "node",
+    "typescript",
+    "community"
+  ],
+  "author": "oDonVivant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donhinux/xrobbott/issues"
+  },
+  "homepage": "https://github.com/donhinux/xrobbott#readme",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^4.7.4"
+  }
+}
