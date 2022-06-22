@@ -7,8 +7,8 @@
 - [Abstract](#Abstract)
 
 ## Disclaimer
-    This repo is the consolidation of my tests with **TypeScript** and **Jest** following the **TDD** approach, 
-    so it may contain crazy stuff in the src, feel free to suggest improvements!
+This repo is the consolidation of my tests with  and **Jest** following the **TDD** approach,
+so it may contain crazy stuff in the src, feel free to suggest improvements!
 
 ## Abstract
 Find streamers on Twitch was always messy because unfortunately discoverability on the platform is not that 
