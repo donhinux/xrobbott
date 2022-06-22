@@ -11,5 +11,9 @@ describe('Twitch Authentication Service', ()=>{
         const twitchAuthNew = TwitchAuthService.getInstance();
         expect(twitchAuthNew).toBe(twitchAuthOriginal);
     });
+    it.todo('should verify if the parameters sent to the Twitch API have the right format');
+    it.todo('should verify if the Twitch API return is valid');
+    it.todo('should verify if it includes de possibility of validating the token');
+    it.todo('should verify if it includes de possibility of refreshing the token');
 
 });
