@@ -41,6 +41,14 @@ describe('Twitch Authentication Service', () => {
             "client_secret": process.env.TWITCH_CLIENT_SECRET,
             "grant_type": TwitchAuthService.GRANT_TYPE,
         };
+        const data = {
+            config: {}, headers: {}, status: 200, statusText: "", data: {
+                "access_token": token,
+                "expires_in": 1,
+                "token_type": "bearer"
+            }
+        };
+        (axios.post as jest.MockedFunction<typeof axios.post>).mockResolvedValue(data);
         await twitchAuth.refresh();
         expect(axios.post).toHaveBeenCalledWith(TwitchAuthService.AUTH_ENDPOINT, null, {params});
     });
