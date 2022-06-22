@@ -5,4 +5,5 @@ export default {
         '^.+\\.ts?$': 'ts-jest',
     },
     transformIgnorePatterns: ['<rootDir>/node_modules/'],
+    setupFilesAfterEnv: ["<rootDir>/jest-setup.config.js"]
 };
