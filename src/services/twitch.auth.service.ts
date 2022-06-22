@@ -2,12 +2,12 @@ import axios from "axios";
 
 export class TwitchAuthService{
 
-    private static instance:TwitchAuthService;
+    private static instance:TwitchAuthService|undefined;
     static readonly AUTH_ENDPOINT: string = "https://id.twitch.tv/oauth2/token";
     static readonly GRANT_TYPE:string = 'client_credentials';
 
     private accessToken!: string;
-    constructor() { }
+    private constructor() { }
 
     static getInstance():TwitchAuthService {
         if (TwitchAuthService.instance==undefined)
@@ -23,7 +23,11 @@ export class TwitchAuthService{
             "client_secret": process.env.TWITCH_CLIENT_SECRET,
             "grant_type": TwitchAuthService.GRANT_TYPE,
         };
-        await axios.post(TwitchAuthService.AUTH_ENDPOINT,null,{params});
+        const {data} = await axios.post(TwitchAuthService.AUTH_ENDPOINT, null, {params});
+        console.log(data);
+        this.token = `Bearer ${data.access_token}`;
     }
+
+    static dispose(){ TwitchAuthService.instance = undefined; }
 
 }
