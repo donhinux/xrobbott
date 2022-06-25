@@ -11,10 +11,22 @@ export class TwitchUserService {
         const {data} = await axios.get(TwitchUserService.USERS_ENDPOINT, {headers, params});
         return data.data[0];
     }
-    static async getUserFollowers( userId: string, authenticationToken:string, paginationToken?: string):Promise<any[]> {
+    static async getUserFollowers( userId: string, authenticationToken:string, paginationToken?: string):Promise<any> {
         const headers = {'Authorization': authenticationToken, 'Client-Id': process.env.TWITCH_CLIENT_ID ?? ''};
         const params = {'to_id': userId, 'after': paginationToken};
         const {data} = await axios.get(TwitchUserService.FOLLOWS_ENDPOINT, {headers, params});
-        return data.data;
+        return {followers: data.data, nextPageToken:data.pagination.cursor};
+    }
+
+    static async getAllUserFollowers(userId: string, authenticationToken:string) {
+        let pageToken = ''
+        let accFollowers: any[]=[];
+        do {
+            let {followers,nextPageToken} = await this.getUserFollowers(userId, authenticationToken, pageToken);
+            accFollowers = [...accFollowers, ...followers];
+            pageToken = nextPageToken;
+        }
+        while (pageToken);
+        return accFollowers;
     }
 }
